@@ -1,0 +1,70 @@
+<html>
+  <head>
+    {% if title %}                                  
+    <title>{{title}} - SQL display demo</title>      
+    {% else %}
+    <title>Welcome to demo SQL display</title> 
+    {% endif %}           
+    {% if 0 == sys_status.stop %}
+    <meta http-equiv="refresh" content="2;url={{ url_for('user_sql_db', table_name='user3') }}">
+    {% endif %}                      
+  </head>
+  <body>
+      <h1>Hello,Aqara!</h1>
+      数据库操作示例：{{ sys_status.process }}
+      <ol>
+        <li>  SELECT * FROM tb WHERE condition </li>
+        <li>  INSERT INTO tb VALUES(x, y, z) </li>
+        <li>  UPDATE tb SET col=xx WHERE condition </li>
+        <li>  DELETE FROM tb  WHERE condition </li>
+      </ol>
+      <hr>
+
+      <form method="post" action="#">
+          SQL: <input name="sql" type="text" value=select size="50"/>
+          <input type="submit"  style="width:100px;height:25px" />
+      </form>
+      <hr>
+
+      <table  border="0" bgcolor="#f2f2f2" frame="void">
+        <tr align="center"   height="40px" bgcolor="#f2f2f2" >
+          {% for head in heads %}
+          <th> {{ head }}</th>
+          <td width="5px"></td> <!--空隙-->
+          {% endfor %}
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+ 
+        {% for items in records %}
+   	<tr height="25px">
+           {% for item in items %}
+           <td>{{ item }}</td>
+           <td width="5px"></td> <!--空隙-->
+           {% endfor %}
+           <td> <a href="{{ url_for('index') }}">edit</a></td>
+           <td> <a href="{{ url_for('user_info', user_id=items[1]) }}">delete</a></td>
+        </tr>
+        {% endfor %}
+      </table>
+      <hr>
+
+      {% for message in get_flashed_messages() %}
+      {{ message }}
+      {% endfor %}
+
+      <br><br>
+      <a href="{{ url_for('user_sql_db', table_name='user3') }} "> SQL </a>
+      <a href="{{ url_for('user_config', table_name='user2') }} "> CONFIG </a>
+      <a href="{{ url_for('user_login') }}"> LOGIN </a>
+
+      <hr>
+      <div id="prog_out" class="progress progress-striped active">
+         <div id="prog_in" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+         </div>
+      </div>
+      <button type="button" class="btn btn-default" οnclick="submit_query()">Generate</button>
+
+
+  </body>
+</html>

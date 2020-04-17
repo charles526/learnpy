@@ -1,0 +1,124 @@
+<html>
+  <head>
+    {% if title %}                                  
+    <title>{{title}} - config ui by aqara</title>      
+    {% else %}
+    <title>Welcome to config ui by aqara</title> 
+    {% endif %}    
+    <link rel="stylesheet" type="text/css" href="../static/css/common.css"/> 
+    <link rel="stylesheet" type="text/css" href="../static/css/config.css"/> 
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>     
+    <script src= "../static/js/config.js"></script>
+  </head>
+  <body>
+    <div class="head">
+      <div class="co_ltd">
+         <div class="logo"><img src="../static/img/logo.png"/></div>
+         <div class="slogon"><span>continuous connection</span></div>
+      </div>
+      <div class="logout">
+         <a href="{{ url_for('user_login') }}">logout</a>
+      </div>
+    </div>
+    <div class="content">
+      <div class="dir">
+        <div class="nav">
+           <ul>
+              <li><a class="index" href="{{ url_for('user_login') }}">首页Index</a></li>
+              <li><a class="tool" href="{{ url_for('user_sql_db', table_name='user3') }}">工具Tool</a></li>
+              <li><a class="config" href="{{ url_for('user_config', table_name='user2') }}">配置ConfigMCU</a></li>
+              <li><a class="download" href="{{ url_for('user_login') }}">下载Download</a></li>
+              <li><a class="download" href="{{ url_for('user_login') }}">问题QA</a></li>
+              <li><a class="about" href="{{ url_for('user_login') }}">关于About</a></li>
+           </ul>
+        </div>
+        <dir class="pic">
+            <input type="image" src="../static/img/download.gif" alt="Submit" width="48" height="48">
+            <input type="file" id="file"> </input>
+        </dir>
+      </div>
+      <div class="main">
+        <div class="edit">
+          <form  method="post">
+            <div class="mcu">
+                 MCU <input checked type="radio" name="mcu" value="JN5189">JN5189
+                 <input type="radio" name="mcu" value="MG21">MG21
+            </div>
+            <div class="device">
+                 <select id="peripheral" name="peripheral"></select>
+                 <span>外设</span><br>
+            </div>
+            <div class="io_type">
+                 <select id="io_type" name="io_type"></select>
+                 <span>接口类型</span><br>
+ 
+            </div>
+            <div class="pins"> 
+                 <input id="one"   name="one"></input> 
+                 <input id="two"   name="two"></input> 
+                 <input id="three" name="three"></input> 
+                 <input id="four"  name="four"></input> 
+                 <input id="five"  name="five"></input> 
+                 <span>引脚号PIN</span><br>
+            </div>
+            <!-- input id="chk_ex" type="checkbox" name="chk_ex">Extern configuration(option)</input> -->
+            <div class="initialize"> 
+                 <select id="init_1" name="init_1"></select> 
+                 <select id="init_2" name="init_2"></select> 
+                 <input id="init_3" name="init_3"></input> 
+                 <input id="init_4" name="init_4"></input>
+                 <span>初始化IO</span><br>
+            </div>
+            <div class=chip_set>
+                 <select id="driver_set" name="init_5"></select>
+                 <span>驱动芯片型号</span> 
+           </div>
+           <div class="submit">
+                <!--input id="add" type="submit" value="Add"--> 
+           </div>
+          </form> 
+          <button id="add">Add</button> 
+        </div>
+        <div class="show">
+          <table  frame="void">
+            <tr align="center"   height="40px" bgcolor="" >
+              {% for head in heads %}
+              <th> {{ head }}</th>
+              {% endfor %}
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+            {% for items in records %}
+            <tr align="center" height="25px">
+              {% for item in items %}
+               <td>{{ item }}</td>
+              {% endfor %}
+               <td> <a href="#">edit</a></td>
+               <td> <a href="{{ url_for('delete_info', user_id=items[0]) }}">delete</a></td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+	<div class="interface">
+           <div class="gen">
+              <button id="cfg_bin">gen bin</button>
+           </div>
+           <div class="proccess">
+              <!--  <img src="../static/img/d1.gif"/> -->
+              <p id=gen_bar><span id=proccessing> 10%</span></p>
+           </div>
+           <div class="downloadfile">
+              <span> File Name: lumi_demo_v22.bin  </span>
+              <a href="" download="lumi_demo_v22.bin">download </a>
+           </div>
+           <div class="reserv">
+           </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <br><br>
+      <a href="{{ url_for('user_sql_db', table_name='user3') }} "> SQL </a>
+    </div>
+   </body>
+</html>

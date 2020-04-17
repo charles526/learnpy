@@ -1,0 +1,24 @@
+{
+    "sys": {
+        "version": "v1.0.0",
+        "param_path": "F:",
+        "title": 34
+    },
+    "sql": {
+        "remote_ip": "192.168.116.130",
+        "user": "root",
+        "password": "123456",
+        "db_name":"db_learn",
+        "tb_name_default":"users"
+    },
+    "mqtt": {
+        "host": "192.168.116.130",
+        "port": 1883,
+        "topic": "config_mcu_io"
+    },
+    "flask": {
+        "secret_key": "no key",
+        "content": "8,   565347001  7,6,5",
+        "stop": "1"
+    }
+}

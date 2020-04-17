@@ -1,0 +1,53 @@
+
+
+.content .left{
+    width:35%;
+    height:inherit;
+    float:left;
+}
+
+.content .login{
+    width:40%;
+    height:inherit;
+    padding-left:20px;
+    padding-top:10px;
+    float:left;
+}
+
+.login .up{
+    height:30%;
+}
+
+.login .bar{
+    margin-left:100px;
+}
+
+.login .username{
+    font-size:20;
+    margin-bottom:20px;
+}
+.login .password{
+    font-size:20;
+    margin-bottom:20px;  
+}
+
+.login #submit{
+    background-color: #CCC;
+    border: none;
+    color: white;
+    padding: 10px 35px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.content .right{
+    width:20%;
+    height:inherit;
+    float:right;
+}
+
+
